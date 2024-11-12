@@ -1,0 +1,306 @@
+local offset = CFrame.new(0, -7.25, 0)
+local duration = 0
+local collectibles = workspace:WaitForChild("Entities"):WaitForChild("Interactions"):WaitForChild("Collectibles")
+local player = game.Players.LocalPlayer
+
+getgenv().FarmingStuff = true
+
+getgenv().farmGrassland = false
+getgenv().farmTundra = false
+getgenv().farmFlowers = false
+getgenv().farmBallz = true
+getgenv().autoPickBallz = false
+
+local function activateProximityPrompts(container, case)
+
+    for _, obj in pairs(container:GetDescendants()) do 
+        if obj:IsA("ProximityPrompt") then
+            if not getgenv().FarmingStuff then return end 
+            if (case == 1 and not getgenv().farmGrassland) or (case == 2 and not getgenv().farmTundra) or (case == 3 and not getgenv().farmFlowers) then return end
+            local character = player.Character or player.CharacterAdded:Wait()
+            character:WaitForChild("HumanoidRootPart").CFrame = obj.Parent.CFrame * offset
+            wait(0.55)
+            fireproximityprompt(obj) 
+            wait(duration)
+        end
+    end
+end
+
+
+local function claimBallz()
+    for _, v in pairs(workspace.Ignore:GetChildren()) do
+        if string.find(v.Name, "Ball") then
+            local character = player.Character or player.CharacterAdded:Wait()
+            character:WaitForChild("HumanoidRootPart").CFrame = v.CFrame
+            wait(0.1)
+            if getgenv().autoPickBallz then
+                fireproximityprompt(v:FindFirstChild("BallInteraction"))
+            end
+            wait(2)
+        end
+        task.wait()
+    end
+end
+
+
+getgenv().DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))()
+getgenv().window = DrRayLibrary:Load("AINI Hub", "https://miro.medium.com/v2/resize:fit:1000/0*YISbBYJg5hkJGcQd.png")
+getgenv().mainTab = DrRayLibrary.newTab("Main", "https://miro.medium.com/v2/resize:fit:1000/0*YISbBYJg5hkJGcQd.png")
+getgenv().mainTab.newToggle("Farm Grassland Ore", "Farm Ores In Grasslands", false, function(toggleState)
+    if toggleState then
+        getgenv().farmGrassland = true
+    else
+        getgenv().farmGrassland = false
+    end
+end)
+getgenv().mainTab.newToggle("Farm Tundra Ore", "Farm Ores In Tundra", false, function(toggleState)
+    if toggleState then
+        getgenv().farmTundra = true
+    else
+        getgenv().farmTundra = false
+    end
+end)
+getgenv().mainTab.newToggle("Farm Flowers", "Farm Flowers", false, function(toggleState)
+    if toggleState then
+        getgenv().farmFlowers = true
+    else
+        getgenv().farmFlowers = false
+    end
+end)
+getgenv().mainTab.newToggle("Farm Ballz", "Farm Dragon Ballz", true, function(toggleState)
+    if toggleState then
+        getgenv().farmBallz = true
+    else
+        getgenv().farmBallz = false
+    end
+end)
+getgenv().mainTab.newToggle("Claim Ballz", "Auto Pick Up Found Ball", false, function(toggleState)
+    if toggleState then
+        getgenv().autoPickBallz = true
+    else
+        getgenv().autoPickBallz = false
+    end
+end)
+
+getgenv().mainTab.newButton("Fishing", "Starts fishing", function()
+    local function waitForFishingMinigame()
+        local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+        repeat
+            wait(0.1) -- Check every second
+        until playerGui:FindFirstChild("FishingMinigame")
+    end
+    local placeId = game.PlaceId
+if placeId == 14839995292 or placeId == 14982280667 then
+    local offset = CFrame.new(0, -7.25, 0)
+    local duration = 0
+    local collectibles = workspace:WaitForChild("Entities"):WaitForChild("Interactions"):WaitForChild("Collectibles")
+    local player = game.Players.LocalPlayer
+
+    getgenv().FarmingStuff = true
+
+    getgenv().farmGrassland = false
+    getgenv().farmTundra = false
+    getgenv().farmFlowers = false
+    getgenv().farmBallz = true
+    getgenv().autoPickBallz = false
+
+    local function activateProximityPrompts(container, case)
+        for _, obj in pairs(container:GetDescendants()) do
+            if obj:IsA("ProximityPrompt") then
+                if not getgenv().FarmingStuff then
+                    return
+                end
+                if
+                    (case == 1 and not getgenv().farmGrassland) or (case == 2 and not getgenv().farmTundra) or
+                        (case == 3 and not getgenv().farmFlowers)
+                 then
+                    return
+                end
+                local character = player.Character or player.CharacterAdded:Wait()
+                character:WaitForChild("HumanoidRootPart").CFrame = obj.Parent.CFrame * offset
+                wait(0.55)
+                fireproximityprompt(obj)
+                wait(duration)
+            end
+        end
+    end
+
+    local function claimBallz()
+        for _, v in pairs(workspace.Ignore:GetChildren()) do
+            if string.find(v.Name, "Ball") then
+                local character = player.Character or player.CharacterAdded:Wait()
+                character:WaitForChild("HumanoidRootPart").CFrame = v.CFrame
+                wait(0.1)
+                if getgenv().autoPickBallz then
+                    fireproximityprompt(v:FindFirstChild("BallInteraction"))
+                end
+                wait(2)
+            end
+            task.wait()
+        end
+    end
+
+    getgenv().DrRayLibrary =
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))()
+    getgenv().window =
+        DrRayLibrary:Load("AINI Hub", "https://miro.medium.com/v2/resize:fit:1000/0*YISbBYJg5hkJGcQd.png")
+    getgenv().mainTab = DrRayLibrary.newTab("Main", "https://miro.medium.com/v2/resize:fit:1000/0*YISbBYJg5hkJGcQd.png")
+    getgenv().mainTab.newToggle(
+        "Farm Grassland Ore",
+        "Farm Ores In Grasslands",
+        false,
+        function(toggleState)
+            if toggleState then
+                getgenv().farmGrassland = true
+            else
+                getgenv().farmGrassland = false
+            end
+        end
+    )
+    getgenv().mainTab.newToggle(
+        "Farm Tundra Ore",
+        "Farm Ores In Tundra",
+        false,
+        function(toggleState)
+            if toggleState then
+                getgenv().farmTundra = true
+            else
+                getgenv().farmTundra = false
+            end
+        end
+    )
+    getgenv().mainTab.newToggle(
+        "Farm Flowers",
+        "Farm Flowers",
+        false,
+        function(toggleState)
+            if toggleState then
+                getgenv().farmFlowers = true
+            else
+                getgenv().farmFlowers = false
+            end
+        end
+    )
+    getgenv().mainTab.newToggle(
+        "Farm Ballz",
+        "Farm Dragon Ballz",
+        true,
+        function(toggleState)
+            if toggleState then
+                getgenv().farmBallz = true
+            else
+                getgenv().farmBallz = false
+            end
+        end
+    )
+    getgenv().mainTab.newToggle(
+        "Claim Ballz",
+        "Auto Pick Up Found Ball",
+        false,
+        function(toggleState)
+            if toggleState then
+                getgenv().autoClaimBallz = true
+            else
+                getgenv().autoClaimBallz = false
+            end
+        end
+    )
+
+    getgenv().mainTab.newButton(
+        "Fishing",
+        "Starts fishing",
+        function()
+            local function waitForFishingMinigame()
+                local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+                repeat
+                    wait(0.1) -- Check every second
+                until playerGui:FindFirstChild("FishingMinigame")
+            end
+            while true do
+                local args = {
+                    [1] = "M1",
+                    [2] = {
+                        ["CastHit"] = CFrame.new(1609, 64, 1038) * CFrame.Angles(-0, 0, -0)
+                    }
+                }
+                game:GetService("ReplicatedStorage").ReplicatedPackage.Remotes.action:FireServer(unpack(args))
+
+                waitForFishingMinigame()
+                args = {
+                    [1] = true
+                }
+
+                game:GetService("ReplicatedStorage").ReplicatedPackage.Remotes.FishingRemotes.Catch:FireServer(
+                    unpack(args)
+                )
+                wait()
+                args = {
+                    [1] = "Low Quality Filet",
+                    [2] = "Fishing"
+                }
+
+                game:GetService("ReplicatedStorage").ReplicatedPackage.Remotes.Craft:InvokeServer(unpack(args))
+
+                args = {
+                    [1] = "Standard Quality Filet",
+                    [2] = "Fishing"
+                }
+                game:GetService("ReplicatedStorage").ReplicatedPackage.Remotes.Craft:InvokeServer(unpack(args))
+            end
+        end
+    )
+
+    getgenv().mainTab.newButton(
+        "Meditate",
+        "Toggles Meditation",
+        function()
+            local args = {
+                [1] = "Meditate",
+                [2] = {}
+            }
+
+            game:GetService("ReplicatedStorage").ReplicatedPackage.Remotes.action:FireServer(unpack(args))
+        end
+    )
+
+    getgenv().mainTab.newButton(
+        "Godmode",
+        "Turns On Godmode",
+        function()
+            local args = {
+                [1] = 0 / 0 --[[NaN]],
+                [2] = 1,
+                [3] = "High"
+            }
+
+            game:GetService("ReplicatedStorage").ReplicatedPackage.Remotes.Distance:FireServer(unpack(args))
+        end
+    )
+
+    while getgenv().FarmingStuff do
+        task.wait()
+        duration = 5
+        if getgenv().farmBallz and getgenv().farmGrassland then
+            claimBallz()
+        end
+        if getgenv().farmGrassland then
+            activateProximityPrompts(collectibles:FindFirstChild("GrasslandsOreCorrect"), 1)
+        end
+        if getgenv().farmBallz and getgenv().farmTundra then
+            claimBallz()
+        end
+        if getgenv().farmTundra then
+            activateProximityPrompts(collectibles:FindFirstChild("TundraOre"), 2)
+        end
+        duration = 0
+        if getgenv().farmBallz and getgenv().farmFlowers then
+            claimBallz()
+        end
+        if getgenv().farmFlowers then
+            activateProximityPrompts(collectibles:FindFirstChild("Flowers"), 3)
+        end
+        if getgenv().farmBallz then
+            claimBallz()
+        end
+    end
+end
